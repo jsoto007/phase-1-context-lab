@@ -65,13 +65,12 @@ function createTimeOutEvent(array) {
 }
 
 function hoursWorkedOnDate(date, targetDate = "2044-03-15") {
-    const foundTimeIn = this.timeInEvents.find(object => object.date === targetDate);
     const foundTimeOut = this.timeOutEvents.find(object => object.date === targetDate);
+    const foundTimeIn = this.timeInEvents.find(object => object.date === targetDate);
     let workedHours = foundTimeOut.hour - foundTimeIn.hour;
     return (workedHours / 100);
 }
 
-
 function wagesEarnedOnDate(date) {
-    return hoursWorkedOnDate(date) * this.payPerHour
+    return hoursWorkedOnDate.call(this, date) * this.payPerHour;
 }
